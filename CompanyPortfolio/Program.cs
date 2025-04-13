@@ -4,10 +4,10 @@ using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// ✅ Configure Kestrel to listen on 0.0.0.0:8080
+// ✅ Configure Kestrel to listen on 0.0.0.0:8080 for Fly.io
 builder.WebHost.ConfigureKestrel(serverOptions =>
 {
-    serverOptions.Listen(IPAddress.Any, 8080); // يخلي التطبيق يسمع على 0.0.0.0:8080
+    serverOptions.Listen(IPAddress.Any, 8080);
 });
 
 // Add services to the container
