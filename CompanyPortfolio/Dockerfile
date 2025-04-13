@@ -4,7 +4,7 @@ WORKDIR /app
 EXPOSE 80
 
 # صورة البناء
-FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 COPY ["CompanyPortfolio/CompanyPortfolio.csproj", "CompanyPortfolio/"]
 RUN dotnet restore "CompanyPortfolio/CompanyPortfolio.csproj"
