@@ -40,6 +40,6 @@ app.UseAuthorization();
 app.MapControllers();
 
 // ✅ هذا السطر هو المفتاح لتخلي التطبيق يسمع على 0.0.0.0:80
-app.Urls.Add("http://0.0.0.0:80");
+app.Urls.Add("http://0.0.0.0:8080");
 
 app.Run();
