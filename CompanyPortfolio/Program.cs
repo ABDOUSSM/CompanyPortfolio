@@ -7,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 // ✅ إعداد Kestrel للاستماع على 0.0.0.0:8080 (لتوافق مع Fly.io)
 builder.WebHost.ConfigureKestrel(serverOptions =>
 {
-    serverOptions.Listen(IPAddress.Any, 8080); // تطبيق الاستماع على المنفذ 8080
+    serverOptions.ListenAnyIP(8080); // ✅ طريقة أكثر وضوحًا
 });
 
 // إضافة الخدمات إلى الحاوية
