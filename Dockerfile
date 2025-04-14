@@ -14,6 +14,6 @@ WORKDIR /app
 COPY --from=build /app/publish .
 
 # نحدد البورت 8080 ليتوافق مع fly.toml
-ENV ASPNETCORE_URLS=http://+:80
+ENV ASPNETCORE_URLS=http://+:8080
 
 ENTRYPOINT ["dotnet", "CompanyPortfolio.dll"]
