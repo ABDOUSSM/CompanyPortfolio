@@ -7,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 // ✅ إعداد Kestrel للاستماع على 0.0.0.0:8080 (لتوافق مع Fly.io)
 builder.WebHost.ConfigureKestrel(serverOptions =>
 {
-    serverOptions.Listen(IPAddress.Any, 8080); // تطبيق الاستماع على المنفذ 8080
+    serverOptions.Listen(IPAddress.Any, 80); // تطبيق الاستماع على المنفذ 8080
 });
 
 // إضافة الخدمات إلى الحاوية
@@ -25,7 +25,7 @@ builder.Services.AddCors(options =>
     {
         policy.WithOrigins(
             builder.Configuration.GetSection("Cors:AllowedOrigins").Get<string[]>() 
-            ?? new[] { "http://localhost:3000", "https://your-frontend-url.vercel.app" }  // أضف رابط الـ frontend الخاص بك على Vercel
+            ?? new[] { "http://localhost:3000", "https://riseley.vercel.app" }  // أضف رابط الـ frontend الخاص بك على Vercel
         )
         .AllowAnyHeader()
         .AllowAnyMethod();
