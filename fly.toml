@@ -1,23 +1,16 @@
-# fly.toml app configuration file generated for companyportfolio-ukj-hg on 2025-04-13T19:03:11Z
-#
-# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
-#
-
-app = 'companyportfolio'
-primary_region = 'fra'
-
-[build]
+app = "companyportfolio"
+primary_region = "fra"
 
 [http_service]
-  internal_port = 80
-  force_https = true
-  auto_stop_machines = 'stop'
-  auto_start_machines = true
-  min_machines_running = 0
-  processes = ['app']
+auto_start_machines = true
+auto_stop_machines = true
+force_https = true
+internal_port = 80 # تأكد من أن التطبيق يستمع على هذا المنفذ
+min_machines_running = 1  # يجب أن يكون هناك آلة واحدة على الأقل تعمل
+processes = [ "app" ]
 
 [[vm]]
-  memory = '1gb'
-  cpu_kind = 'shared'
-  cpus = 1
-  memory_mb = 1024
+cpu_kind = "shared"
+cpus = 1
+memory = "1gb"
+memory_mb = 1_024
