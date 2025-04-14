@@ -4,13 +4,13 @@ using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// ✅ Configure Kestrel to listen on 0.0.0.0:8080 for Fly.io
+// ✅ إعداد Kestrel للاستماع على 0.0.0.0:8080 (لتوافق مع Fly.io)
 builder.WebHost.ConfigureKestrel(serverOptions =>
 {
-    serverOptions.Listen(IPAddress.Any, 80);
+    serverOptions.Listen(IPAddress.Any, 8080); // تطبيق الاستماع على المنفذ 8080
 });
 
-// Add services to the container
+// إضافة الخدمات إلى الحاوية
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
@@ -18,26 +18,26 @@ builder.Services.AddSwaggerGen(c =>
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "CompanyPortfolio API", Version = "v1" });
 });
 
-// Configure CORS
+// إعداد CORS لتحديد الأصول المسموحة
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowedOrigins", policy =>
     {
         policy.WithOrigins(
             builder.Configuration.GetSection("Cors:AllowedOrigins").Get<string[]>() 
-            ?? new[] { "http://localhost:3000" }
+            ?? new[] { "http://localhost:3000", "https://your-frontend-url.vercel.app" }  // أضف رابط الـ frontend الخاص بك على Vercel
         )
         .AllowAnyHeader()
         .AllowAnyMethod();
     });
 });
 
-// Register Email Service
+// تسجيل خدمة البريد الإلكتروني
 builder.Services.AddScoped<IEmailService, MailjetEmailService>();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline
+// تفعيل Swagger في وضع التطوير
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -50,4 +50,5 @@ app.UseCors("AllowedOrigins");
 app.UseAuthorization();
 app.MapControllers();
 
+// بدء التطبيق على المنفذ 8080
 app.Run();
