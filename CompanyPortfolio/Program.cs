@@ -45,7 +45,7 @@ if (app.Environment.IsDevelopment())
         c.SwaggerEndpoint("/swagger/v1/swagger.json", "CompanyPortfolio API v1"));
 }
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 app.UseCors("AllowedOrigins");
 app.UseAuthorization();
 app.MapControllers();
